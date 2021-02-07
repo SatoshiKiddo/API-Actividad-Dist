@@ -36,7 +36,7 @@ $ npm install
 
 ```bash
 # development
-$ npm run start
+$ npm run start -- Nota: si da error al comenzar es preferible que comience con: nest start --watch (Podra visualizar como se procesa la ejecucion)
 
 # watch mode
 $ npm run start:dev
@@ -57,6 +57,14 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## OPENAPI - SWAGGER
+
+Puede acceder a la OPENAPI a traves de localhost:3000/api como url.
+
+Para las peticiones de insercion "/add" debe mandar en la peticion un json con el cuerpo json de las entidades.
+
+NOTA: RECUERDE REALIZAR EL DESPLIEGUE DE BASE DE DATOS CON LOS SCRIPTS EN LA CARPETA 'src/BDD/'.
 
 ## Support
 

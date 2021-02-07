@@ -31,6 +31,8 @@ DROP TABLE IF EXISTS public.Seccion CASCADE;
 
 CREATE TABLE Seccion(
 	seccion_id SERIAL,
+	nombre VARCHAR(50),
+	description VARCHAR(50),
 	uc INT,
 	semestre INT NOT NULL,
 	tipo VARCHAR(50) NOT NULL,
@@ -67,8 +69,8 @@ CREATE TABLE Registro(
 	registro_id SERIAL,
 	status VARCHAR(50) NOT NULL,
 	created_date DATE NOT NULL,
-	deleted_date DATE NOT NULL,
-	type VARCHAR(50) NOT NULL,
+	deleted_date DATE,
+	tipo VARCHAR(50) NOT NULL,
 	seccion_id_fk int NOT NULL,
 	persona_id_fk int NOT NULL,
 	CONSTRAINT "FK_Registro_Persona" FOREIGN KEY (persona_id_fk)

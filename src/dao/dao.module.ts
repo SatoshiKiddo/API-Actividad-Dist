@@ -7,6 +7,12 @@ import { Escuela } from 'src/model/escuela.entity';
 import { Seccion } from 'src/model/seccion.entity';
 import { Persona } from '../model/persona.entity';
 import { Registro} from '../model/registro.entity';
+import { personaProviders } from '../model/persona.providers';
+import { databaseProviders } from './database.providers';
+import { facultadProviders } from 'src/model/facultad.providers';
+import { registroProviders } from 'src/model/registro.providers';
+import { escuelaProviders } from 'src/model/escuela.providers';
+import { seccionProviders } from 'src/model/seccion.providers';
 //Se deben agregar las entidades vinculadas aca.
 
 @Module({
@@ -20,9 +26,9 @@ import { Registro} from '../model/registro.entity';
     database: 'api-distribuidos',
     entities: [Facultad, Escuela, Seccion, Registro, Persona],
     synchronize: false,
-  }),
+  }), TypeOrmModule
   ],
-  providers: [DaoService, Repository],
-  exports: [DaoService, TypeOrmModule],
+  providers: [DaoService, Repository, ...registroProviders, ...escuelaProviders, ...seccionProviders, ...facultadProviders, ...personaProviders, ...databaseProviders],
+  exports: [DaoService, TypeOrmModule, Repository],
 })
 export class DaoModule {}

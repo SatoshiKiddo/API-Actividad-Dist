@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, TableForeignKey, ManyToOne, OneToMany} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, TableForeignKey, ManyToOne, OneToMany, JoinColumn} from 'typeorm';
 import { Escuela } from './escuela.entity';
 import { Registro} from './registro.entity';
 
@@ -6,6 +6,7 @@ import { Registro} from './registro.entity';
 export class Seccion {
 
   public constructor(seccion : any){
+    if(seccion){
     this.seccion_id = seccion.seccion_id;
     this.nombre = seccion.nombre;
     this.description = seccion.description;
@@ -18,45 +19,69 @@ export class Seccion {
     this.hp = seccion.hp;
     this.tipo = seccion.type;
     this.semestre = seccion.semestre;
+    }
   }
 
   @PrimaryGeneratedColumn()
   seccion_id: number;
 
-  @Column()
+  @Column({
+    nullable: false,
+})
   nombre: string;
 
-  @Column()
+  @Column({
+    nullable: false,
+})
   description: string;
 
-  @Column()
+  @Column({
+    nullable: false,
+})
   status: string;
 
-  @Column()
+  @Column({
+    nullable: false,
+})
   created_date: Date;
 
-  @Column()
+  @Column({
+    nullable: true,
+})
   deleted_date: Date;
 
-  @Column()
+  @Column({
+    nullable: false,
+})
   uc: number;
 
-  @Column()
+  @Column({
+    nullable: false,
+})
   ht: number;
 
-  @Column()
+  @Column({
+    nullable: false,
+})
   hp: number;
 
-  @Column()
+  @Column({
+    nullable: false,
+})
   hl: number;
 
-  @Column()
+  @Column({
+    nullable: false,
+})
   tipo: string;
 
-  @Column()
+  @Column({
+    nullable: true,
+})
   semestre: number;
 
   @ManyToOne(type => Escuela, escuela => escuela.secciones)
+  @JoinColumn({ name: "escuela_id_fk" })
   escuela: Escuela;
 
   @OneToMany(type => Registro, registro => registro.seccion)
